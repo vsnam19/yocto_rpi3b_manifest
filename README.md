@@ -284,6 +284,8 @@ This manifest repository follows the same licensing as the Yocto Project. Indivi
 </manifest>
 ```
 
+The manifest file is named `default.xml` to follow repo tool conventions.
+
 ## Version Information
 
 - **Yocto Release**: Scarthgap (5.0)
