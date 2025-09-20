@@ -274,9 +274,9 @@ This manifest repository follows the same licensing as the Yocto Project. Indivi
   <project name="poky" path="poky" />
 
   <!-- Additional layers -->
-  <project name="meta-openembedded" path="meta/meta-openembedded" />
-  <project name="meta-security" path="meta/meta-security" />
-  <project name="meta-virtualization" path="meta/meta-virtualization" />
+  <project name="openembedded/meta-openembedded" remote="github" path="meta/meta-openembedded" revision="scarthgap" />
+  <project name="openembedded/meta-security" remote="github" path="meta/meta-security" revision="scarthgap" />
+  <project name="openembedded/meta-virtualization" remote="github" path="meta/meta-virtualization" revision="scarthgap" />
   <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
   
   <!-- Personal development tools -->
