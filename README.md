@@ -14,6 +14,7 @@ This manifest sets up a complete Yocto build environment with the following comp
   - meta-security (security-focused recipes)
   - meta-virtualization (containerization and virtualization support)
   - meta-raspberrypi (Raspberry Pi BSP layer)
+- **Docker Environment**: Pre-configured Docker environment for consistent builds
 
 ## Prerequisites
 
@@ -59,6 +60,10 @@ source ~/.bashrc
 
 ## Quick Start
 
+**Choose your build method:**
+- **Native Build**: Follow steps 1-5 below for building directly on your host system
+- **Docker Build**: Skip to [Docker Build Option](#docker-build-option) for containerized builds
+
 ### 1. Initialize the Build Environment
 ```bash
 # Create workspace directory
@@ -66,7 +71,7 @@ mkdir -p ~/yocto-rpi3b
 cd ~/yocto-rpi3b
 
 # Initialize repo with this manifest
-repo init -u https://github.com/YOUR_USERNAME/yocto_rpi3b_manifest.git -b main
+repo init -u https://github.com/vsnam19/yocto_rpi3b_manifest.git -b main
 
 # Sync all repositories
 repo sync
@@ -114,6 +119,44 @@ bitbake core-image-full-cmdline
 # OR build an image with package management
 bitbake core-image-base
 ```
+
+## Docker Build Option
+
+For a more consistent and isolated build environment, you can use the included Docker setup:
+
+### Prerequisites for Docker Build
+- Docker installed and running
+- Docker Compose (optional, if provided in docker-env)
+- Sufficient disk space for Docker containers and Yocto build
+
+### Using Docker Environment
+```bash
+# After repo sync, navigate to the docker environment
+cd docker-env
+
+# Build and run the Docker container
+docker build -t yocto-builder .
+
+# Run container with mounted workspace
+docker run -it --rm \
+  -v $(pwd)/..:/workspace \
+  -v yocto-downloads:/workspace/downloads \
+  -v yocto-sstate:/workspace/sstate-cache \
+  yocto-builder
+
+# Inside the container, source the build environment
+source /workspace/poky/oe-init-build-env /workspace/build-rpi3b
+
+# Configure and build as usual
+echo 'MACHINE = "raspberrypi3-64"' >> conf/local.conf
+bitbake core-image-minimal
+```
+
+### Benefits of Docker Build
+- **Consistent Environment**: Same build environment across different host systems
+- **Isolation**: No interference with host system packages
+- **Reproducibility**: Guaranteed reproducible builds
+- **Easy Setup**: No need to install Yocto dependencies on host
 
 ### 5. Flash to SD Card
 After successful build, the image will be located at:
@@ -235,6 +278,9 @@ This manifest repository follows the same licensing as the Yocto Project. Indivi
   <project name="meta-security" path="meta/meta-security" />
   <project name="meta-virtualization" path="meta/meta-virtualization" />
   <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
+  
+  <!-- Docker build environment -->
+  <project name="yocto-docker-env" remote="github" path="docker-env" revision="main" />
 </manifest>
 ```
 

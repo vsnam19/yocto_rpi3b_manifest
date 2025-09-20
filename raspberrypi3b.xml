@@ -16,6 +16,9 @@
   <project name="meta-virtualization" path="meta/meta-virtualization" />
   <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
 
+  <!-- Docker environment for Yocto development -->
+  <project name="yocto-docker-env" remote="github" path="docker-env" revision="main" />
+
   <!-- Optional: Add custom layer as an empty entry (for local dev only) -->
   <!-- <project name="meta-mycustomlayer" path="meta/meta-mycustomlayer" remote="local" revision="master" /> -->
 </manifest>
