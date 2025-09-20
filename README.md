@@ -265,7 +265,8 @@ This manifest repository follows the same licensing as the Yocto Project. Indivi
 <manifest>
   <!-- Remotes define where to fetch repositories from -->
   <remote name="yocto" fetch="https://git.yoctoproject.org/" />
-  <remote name="github" fetch="https://github.com/" />
+  <remote name="opensource" fetch="https://github.com/" />
+  <remote name="vsnam19" fetch="https://github.com/vsnam19/" />
 
   <!-- Default settings for all projects -->
   <default remote="yocto" revision="scarthgap" sync-j="4" />
@@ -277,14 +278,24 @@ This manifest repository follows the same licensing as the Yocto Project. Indivi
   <project name="meta-openembedded" path="meta/meta-openembedded" />
   <project name="meta-security" path="meta/meta-security" />
   <project name="meta-virtualization" path="meta/meta-virtualization" />
-  <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
+  <project name="agherzan/meta-raspberrypi" remote="opensource" path="meta/meta-raspberrypi" revision="scarthgap" />
   
-  <!-- Docker build environment -->
-  <project name="yocto-docker-env" remote="github" path="docker-env" revision="main" />
+  <!-- Personal development tools -->
+  <project name="yocto-docker-env" remote="vsnam19" path="docker-env" revision="main" />
 </manifest>
 ```
 
 The manifest file is named `default.xml` to follow repo tool conventions.
+
+### Remote Structure
+The manifest uses three different remotes to organize dependencies:
+
+- **`yocto`**: Official Yocto Project repositories (git.yoctoproject.org)
+  - Core Poky distribution and official meta layers
+- **`opensource`**: Open source projects on GitHub (github.com)
+  - Community-maintained BSP layers like meta-raspberrypi
+- **`vsnam19`**: Personal repositories (github.com/vsnam19/)
+  - Custom tools and development environment configurations
 
 ## Version Information
 
