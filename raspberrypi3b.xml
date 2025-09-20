@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Remotes -->
+  <remote name="yocto" fetch="https://git.yoctoproject.org/" />
+  <remote name="github" fetch="https://github.com/" />
+
+  <!-- Default settings -->
+  <default remote="yocto" revision="scarthgap" sync-j="4" />
+
+  <!-- Core Yocto -->
+  <project name="poky" path="poky" />
+
+  <!-- Layers under meta/ -->
+  <project name="meta-openembedded" path="meta/meta-openembedded" />
+  <project name="meta-security" path="meta/meta-security" />
+  <project name="meta-virtualization" path="meta/meta-virtualization" />
+  <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
+
+  <!-- Optional: Add custom layer as an empty entry (for local dev only) -->
+  <!-- <project name="meta-mycustomlayer" path="meta/meta-mycustomlayer" remote="local" revision="master" /> -->
+</manifest>
