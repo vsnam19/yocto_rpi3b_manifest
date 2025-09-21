@@ -12,8 +12,8 @@
 
   <!-- Layers under meta/ -->
   <project name="openembedded/meta-openembedded" remote="github" path="meta/meta-openembedded" revision="scarthgap" />
-  <project name="openembedded/meta-security" remote="github" path="meta/meta-security" revision="scarthgap" />
-  <project name="openembedded/meta-virtualization" remote="github" path="meta/meta-virtualization" revision="scarthgap" />
+  <project name="meta-security" remote="yocto" path="meta/meta-security" revision="scarthgap" />
+  <project name="meta-virtualization" remote="yocto" path="meta/meta-virtualization" revision="scarthgap" />
   <project name="agherzan/meta-raspberrypi" remote="github" path="meta/meta-raspberrypi" revision="scarthgap" />
 
   <!-- Docker environment for Yocto development -->
